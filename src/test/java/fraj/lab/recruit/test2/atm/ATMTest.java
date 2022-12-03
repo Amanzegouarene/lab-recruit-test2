@@ -1,6 +1,7 @@
 package fraj.lab.recruit.test2.atm;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,6 +27,7 @@ class ATMTest {
         atm = new ATM(amountSelectorMock, cashManagerMock, paymentProcessorMock);
     }
 
+    @Disabled("To test Pitest mutation testing")
     @Test
     void givenNegativeSelectedAmount_whenRunCashWithdrawal_shouldThrownATMTechnicalExceptionAndStopProcessing() {
         // Given
@@ -63,7 +65,7 @@ class ATMTest {
         ATMStatus atmStatus = atm.runCashWithdrawal();
 
         // Then
-        assertThat(atmStatus).isEqualByComparingTo(ATMStatus.CASH_NOT_AVAILABLE);
+//        assertThat(atmStatus).isEqualByComparingTo(ATMStatus.CASH_NOT_AVAILABLE);
         verifyNoInteractions(paymentProcessorMock);
         verify(cashManagerMock, times(0)).deliver(anyInt());
     }
